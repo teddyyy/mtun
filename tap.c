@@ -43,7 +43,7 @@ static int tap_alloc(char *dev)
     return fd;
 }
 
-static int tap_ifup(char *dev)
+int tap_ifup(char *dev)
 {
     int sock;
     struct ifreq ifr;

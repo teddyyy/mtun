@@ -7,6 +7,7 @@
 #include <pthread.h>
 
 #include "mtun.h"
+#include "tap.h"
 #include "bridge.h"
 #include "socket.h"
 #include "handle.h"
@@ -37,7 +38,8 @@ static void usage(char *progname) {
   	fprintf(stderr, "%s -h\n", progname);
   	fprintf(stderr, "\n");
   	fprintf(stderr, "-i <bridge name>: Name of interface to use (mandatory)\n");
-  	fprintf(stderr, "-d: outputs debug information while running\n");
+  	fprintf(stderr, "-v: outputs debug information while running\n");
+  	fprintf(stderr, "-d: running process as daemon\n");
   	fprintf(stderr, "-h: prints this help text\n");
  	exit(1);
 }
@@ -106,8 +108,9 @@ int main(int argc, char *argv[])
 		}
     }
 
-	// create bridge interface
+	// create bridge interface and interface up
 	add_bridge(mt.br_name);
+	tap_ifup(mt.br_name);
 
 	// main loop
 	handle_tunnel_setup_request(&mt, sock_fd);
