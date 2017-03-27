@@ -2,16 +2,16 @@
 #include <net/if.h>
 #include <pthread.h>
 
-#define TUNNEL_SETUP_REQ	10
-#define TUNNEL_SETUP_ACCEPT	20
-#define TUNNEL_SETUP_DENY	30
+#define TUNNEL_SETUP_REQ		10
+#define TUNNEL_SETUP_ACCEPT		20
+#define TUNNEL_SETUP_DENY		30
 
 #define LISTENPORT			55500
-#define TUNNEL_BASE_PORT	55550
+#define TUNNEL_BASE_PORT		55550
 
-#define BUFSIZE				2048
+#define BUFSIZE			2048
 #define PEERNUMMAX			16
-#define ADDRLEN				16
+#define ADDRLEN			16
 
 void do_debug(char *msg, ...);
 
