@@ -46,7 +46,7 @@ int tap_ifup(char *dev) {
     int sock;
     struct ifreq ifr;
 
-	sock = create_udp_socket();
+    sock = create_udp_socket();
 
     memset(&ifr, 0, sizeof(ifr));
     strncpy(ifr.ifr_name, dev, IFNAMSIZ);

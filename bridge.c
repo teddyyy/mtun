@@ -39,24 +39,25 @@ int br_add_interface(const char *bridge, const char *dev) {
 }
 
 int add_bridge(const char *brname) {
+
 	int br_sock_fd;
-    int ret = 0;
+	int ret = 0;
 
 	if ((br_sock_fd = socket(AF_LOCAL, SOCK_STREAM, 0)) < 0) {
-        fprintf(stderr, "can't create socket\n");
-        return errno;
-    }
+		fprintf(stderr, "can't create socket\n");
+		return errno;
+	}
 
 #ifdef SIOCBRADDBR
-    ret = ioctl(br_sock_fd, SIOCBRADDBR, brname);
-    if (ret < 0) {
+	ret = ioctl(br_sock_fd, SIOCBRADDBR, brname);
+	if (ret < 0) {
 #endif
-        char _br[IFNAMSIZ];
-        unsigned long arg[3] = { BRCTL_ADD_BRIDGE, (unsigned long) _br };
+		char _br[IFNAMSIZ];
+		unsigned long arg[3] = { BRCTL_ADD_BRIDGE, (unsigned long) _br };
 
-        strncpy(_br, brname, IFNAMSIZ);
-        ret = ioctl(br_sock_fd, SIOCSIFBR, arg);
-    }
+		strncpy(_br, brname, IFNAMSIZ);
+		ret = ioctl(br_sock_fd, SIOCSIFBR, arg);
+	}
 
-    return ret < 0 ? errno : 0;
+	return ret < 0 ? errno : 0;
 }

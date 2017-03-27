@@ -13,7 +13,7 @@ void* monitor_tap2net (void* fd) {
 	
 	do_debug("monitor_tap2net: process generated\n");
 
-    while (1) {
+	while (1) {
 		n = read(fds->tap_fd, buffer, BUFSIZE);
 		tap2net++;
 
@@ -22,7 +22,7 @@ void* monitor_tap2net (void* fd) {
 		n = sendto(fds->remote_net_fd, buffer, n, 0,
 				(struct sockaddr *)&fds->remote, sizeof(fds->remote));
 		do_debug("TAP2NET %lu: Written %d bytes to the network\n", tap2net, n);
-    }
+	}
 }
 
 void* monitor_net2tap (void* fd)

@@ -81,13 +81,13 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Too many options!\n");
 		printf("\n");
 		usage(progname);
-    }
+	}
 
 	if (mt.br_name[0] == '\0') {
 		fprintf(stderr, "Must specify bridge interface name\n");
 		printf("\n");
 		usage(progname);
-    }
+	}
 
 	// create socket for listening request message
 	sock_fd = create_tcp_socket();
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 			perror("daaemon: ");
 			exit(1);
 		}
-    }
+	}
 
 	// create bridge interface and interface up
 	add_bridge(mt.br_name);
