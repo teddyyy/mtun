@@ -14,8 +14,7 @@
 
 int debug = 0;
 
-void do_debug(char *msg, ...)
-{
+void do_debug(char *msg, ...) {
     va_list argp;
 
     if (debug) {
@@ -25,8 +24,7 @@ void do_debug(char *msg, ...)
     }
 }
 
-static void init_mtun_data(struct mtun *p)
-{
+static void init_mtun_data(struct mtun *p) {
 	p->peer_num = 0;
 	p->daemon = 0;
 	memset(p->br_name, '\0', IFNAMSIZ - 1);
@@ -77,12 +75,12 @@ int main(int argc, char *argv[])
 	}
 
 	argv += optind;
-    argc -= optind;
+	argc -= optind;
 
 	if (argc > 0) {
 		fprintf(stderr, "Too many options!\n");
-        printf("\n");
-        usage(progname);
+		printf("\n");
+		usage(progname);
     }
 
 	if (mt.br_name[0] == '\0') {
@@ -103,8 +101,8 @@ int main(int argc, char *argv[])
 	// deamonize if daemon flag
 	if (mt.daemon) {
 		if ((daemon(1,1)) != 0) {
-        	perror("daaemon: ");
-            exit(1);
+			perror("daaemon: ");
+			exit(1);
 		}
     }
 

@@ -14,8 +14,7 @@
 #include "mtun.h"
 #include "socket.h"
 
-static int tap_alloc(char *dev)
-{
+static int tap_alloc(char *dev) {
     struct ifreq ifr;
     int fd, err;
     char *clonedev = "/dev/net/tun";
@@ -43,8 +42,7 @@ static int tap_alloc(char *dev)
     return fd;
 }
 
-int tap_ifup(char *dev)
-{
+int tap_ifup(char *dev) {
     int sock;
     struct ifreq ifr;
 
@@ -64,8 +62,7 @@ int tap_ifup(char *dev)
     return 0;
 }
 
-void create_tap_device(struct peer_data *pd, char *addr, int port)
-{
+void create_tap_device(struct peer_data *pd, char *addr, int port) {
 	do_debug("addr:%s, port%d\n", addr, port);
 	strncpy(pd->if_name, "tap%d", IFNAMSIZ -1);
 
@@ -76,20 +73,20 @@ void create_tap_device(struct peer_data *pd, char *addr, int port)
 	pd->sock = create_udp_socket();
 
 	pd->remote.sin_family = AF_INET;
-    pd->remote.sin_addr.s_addr = inet_addr(addr);
-    pd->remote.sin_port = htons(port);
+	pd->remote.sin_addr.s_addr = inet_addr(addr);
+	pd->remote.sin_port = htons(port);
 
-    pd->remote_net_fd = pd->sock;
+	pd->remote_net_fd = pd->sock;
 
 	// for local
 	pd->sock = create_udp_socket();
 
 	pd->local.sin_family = AF_INET;
-    pd->local.sin_addr.s_addr = htonl(INADDR_ANY);
-    pd->local.sin_port = htons(port);
+	pd->local.sin_addr.s_addr = htonl(INADDR_ANY);
+	pd->local.sin_port = htons(port);
     if (bind(pd->sock, (struct sockaddr*) &pd->local, sizeof(pd->local)) < 0) {
 		perror("bind()");
-        exit(1);
+		exit(1);
     }
 
     pd->local_net_fd = pd->sock;

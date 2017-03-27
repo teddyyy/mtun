@@ -59,7 +59,7 @@ void handle_tunnel_setup_request(struct mtun *mt, int sock)
 
 			// create network io process
 			pthread_create(&p_pd->send, NULL, monitor_tap2net, (void*)p_pd);
-    		pthread_create(&p_pd->recv, NULL, monitor_net2tap, (void*)p_pd);
+			pthread_create(&p_pd->recv, NULL, monitor_net2tap, (void*)p_pd);
 
 			mt->peer_num++;
 		} else {

@@ -9,8 +9,7 @@
 #include <linux/if_bridge.h>
 #include <net/if.h>
 
-int br_add_interface(const char *bridge, const char *dev)
-{
+int br_add_interface(const char *bridge, const char *dev) {
     struct ifreq ifr;
     int err, br_socket_fd;
     int ifindex = if_nametoindex(dev);
@@ -39,8 +38,7 @@ int br_add_interface(const char *bridge, const char *dev)
     return err < 0 ? errno : 0;
 }
 
-int add_bridge(const char *brname)
-{
+int add_bridge(const char *brname) {
 	int br_sock_fd;
     int ret = 0;
 
