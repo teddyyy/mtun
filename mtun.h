@@ -22,16 +22,16 @@ struct mtun {
 };
 
 struct peer_data {
-    int tap_fd;
+	int tap_fd;
 	int sock;
 
 	char if_name[IFNAMSIZ];
 
-    int remote_net_fd;
-    int local_net_fd;
+	int remote_net_fd;
+	int local_net_fd;
 
-    struct sockaddr_in remote;
-    struct sockaddr_in local;
+	struct sockaddr_in remote;
+	struct sockaddr_in local;
 
 	pthread_t send;
 	pthread_t recv;
